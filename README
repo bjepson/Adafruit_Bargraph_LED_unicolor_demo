@@ -1,0 +1,37 @@
+
+This example will light up the red LEDs in the Adafruit LED bargraph:
+
+http://www.adafruit.com/products/459
+
+To try it out, wire your Arduino to the bargraph module as follows:
+
+Arduino    Bargraph pin(s)
+2          1 & 14 (use a 100 to 220 ohm resistor)
+3          6 &  9 (use a 100 to 220 ohm resistor)
+4          7 &  8 (use a 100 to 220 ohm resistor)
+5          2
+6          3
+7          4
+8          5
+
+In theory, you should use a transitor to drive the anodes (Arduino pins 2, 3, and 4), but this example never lights more than one segment at once (it relies on persistence of vision). So you're never pulling more current than a single pin can handle.
+
+To use it, first create a BarGraph object:
+
+  BarGraph bargraph;
+
+Then, initialize it by giving it the start pin. It will also use the six pins after it. So if you initialize it with 2, it will use pins 2-8:
+
+  bargraph.setStartPin(2);
+
+Next, set the bargraph's value from 0 (off) to 12 (all lit):
+
+  bargraph.setValue(counter);
+ 
+Now comes the tricky part. Within loop, you must call light() continuously, which means you can't really perform any blocking operations or long-running operations within loop():
+
+  bargraph.light();
+
+If you do linger too long doing anything in loop(), the display will act up.
+
+
