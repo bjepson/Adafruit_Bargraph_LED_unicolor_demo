@@ -8,6 +8,7 @@ class BarGraph
 public:
   BarGraph();
   void setStartPin(int startPin);
+  void light(boolean reverse);
   void light();
   void setValue(int value);
 private:
@@ -20,3 +21,5 @@ private:
 };
 
 #endif
+
+

@@ -9,7 +9,7 @@ BarGraph bargraph;
 
 void setup() {
   Serial.begin(9600);
-  bargraph.setStartPin(2);
+  bargraph.setStartPin(26);
   bargraph.setValue(counter);
   last = millis();
 }
@@ -20,7 +20,7 @@ void loop() {
 
     last = millis();
     counter += direction;
-    bargraph.setValue(counter);
+    bargraph.setValue(counter); 
 
     if (counter == 12) {
       direction = -1;
@@ -31,7 +31,7 @@ void loop() {
 
   }
 
-  bargraph.light();
+  bargraph.light(true);
 
 }
 
