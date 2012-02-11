@@ -5,12 +5,22 @@ int counter = 0;
 long last;
 int direction = 1;
 
-BarGraph bargraph;
+BarGraph bargraphA;
+BarGraph bargraphB;
+BarGraph bargraphC;
 
 void setup() {
   Serial.begin(9600);
-  bargraph.setStartPin(26);
-  bargraph.setValue(counter);
+
+  bargraphA.setStartPin(26);
+  bargraphA.setValue(counter);
+
+  bargraphB.setStartPin(33);
+  bargraphB.setValue(counter);
+
+  bargraphC.setStartPin(40);
+  bargraphC.setValue(counter);
+
   last = millis();
 }
 
@@ -20,8 +30,10 @@ void loop() {
 
     last = millis();
     counter += direction;
-    bargraph.setValue(counter); 
-
+    bargraphA.setValue(counter); 
+    bargraphB.setValue(counter); 
+    bargraphC.setValue(counter); 
+    
     if (counter == 12) {
       direction = -1;
     } 
@@ -31,8 +43,9 @@ void loop() {
 
   }
 
-  bargraph.light(true);
-
+  bargraphA.light(true);  
+  bargraphB.light();
+  bargraphC.light(true);
 }
 
 
